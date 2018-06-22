@@ -26,13 +26,15 @@ fetch(endpoint)
 function updateDOM() {
   let results = search(input.value, cities);
   let suggestions = document.querySelector('.suggestions');
-  let html = results.map((city) => {
-    let listItem = document.createElement('li');
-    let listItemContent = document.createTextNode(city['city']);
-    listItem.appendChild(listItemContent);
-    suggestions.appendChild(listItem);
-  })
-  suggestions.innerHTML = html;
+  let node = results.map(loc => `<li>${loc.city}</li>`).join('');
+  suggestions.innerHTML = node;
+  // let html = results.map((city) => {
+  //   let listItem = document.createElement('li');
+  //   let listItemContent = document.createTextNode(city['city']);
+  //   listItem.appendChild(listItemContent);
+  //   suggestions.appendChild(listItem);
+  // })
+  // suggestions.innerHTML = html;
  
 }
 
@@ -42,7 +44,7 @@ function search(str, cities) {
 } 
 
 input.addEventListener('change', () => updateDOM());
-// input.addEventListener('keyup',  () => updateDOM());
+input.addEventListener('keyup',  () => updateDOM());
 </script>
   </body>
 </html>
